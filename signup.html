@@ -21,7 +21,7 @@
     </head>
 
     <body class="text-center">
-        <form class="form-signin">
+        <form action="/" class="form-signin" method="post">
             <img class="mb-4"
                 src="images/MyPhoto.jpg"
                 alt="" width="150" height="150">
@@ -29,11 +29,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Please sign up with your
                 email address</h1>
 
-            <input type="text" class="form-control top" placeholder="First Name"
+            <input type="text" name="fName" class="form-control top" placeholder="First Name"
                 required autofocus>
-            <input type="text" class="form-control middle" placeholder="Last Name"
+            <input type="text" name="lName" class="form-control middle" placeholder="Last Name"
                 required>
-            <input type="email" class="form-control bottom" placeholder="Email"
+            <input type="email" name="email" class="form-control bottom" placeholder="Email"
                 required>
             <!-- <textarea class="form-control" placeholder="Your Message" rows="5" required></textarea> -->
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign
