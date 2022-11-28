@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
+const https = require("https");
+require("dotenv").config();
 
 const app = express();
 
@@ -13,13 +15,41 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  let firstName = req.body.fName;
-  let lastName = req.body.lName;
-  let email = req.body.email;
+  const firstName = req.body.fName;
+  const lastName = req.body.lName;
+  const email = req.body.email;
+  const phone = req.body.phone;
 
-  console.log("First Name: " + firstName);
-  console.log("Last Name: " + lastName);
-  console.log("Email: " + email);
+  const data = {
+    members: [
+      {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName,
+          PHONE: phone,
+        },
+      },
+    ],
+  };
+
+  const jsonData = JSON.stringify(data);
+  let options = {
+    method: "POST",
+    auth: process.env.USERNAME_API,
+  };
+  const url =
+    "https://us14.api.mailchimp.com/3.0/lists/" + process.env.LINKED_ID;
+  const request = https.request(url, options, (response) => {
+    response.on("data", (data) => {
+      //   console.log(JSON.parse(data));
+      res.send(JSON.parse(data));
+    });
+  });
+
+  request.write(jsonData);
+  request.end();
 });
 
 app.listen(3000, () => {

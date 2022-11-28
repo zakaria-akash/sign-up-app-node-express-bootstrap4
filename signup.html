@@ -29,12 +29,14 @@
             <h1 class="h3 mb-3 font-weight-normal">Please sign up with your
                 email address</h1>
 
-            <input type="text" name="fName" class="form-control top" placeholder="First Name"
-                required autofocus>
-            <input type="text" name="lName" class="form-control middle" placeholder="Last Name"
-                required>
-            <input type="email" name="email" class="form-control bottom" placeholder="Email"
-                required>
+            <input type="text" name="fName" class="form-control top"
+                placeholder="First Name" required autofocus>
+            <input type="text" name="lName" class="form-control middle"
+                placeholder="Last Name" required>
+            <input type="tel" name="phone" class="form-control middle"
+                placeholder="Mobile: 01XXXXXXXXX" pattern="[0-9]{2}[0-9]{9}" required>
+            <input type="email" name="email" class="form-control bottom"
+                placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
             <!-- <textarea class="form-control" placeholder="Your Message" rows="5" required></textarea> -->
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign
                 up</button>
