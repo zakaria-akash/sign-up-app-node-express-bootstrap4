@@ -42,14 +42,24 @@ app.post("/", (req, res) => {
   const url =
     "https://us14.api.mailchimp.com/3.0/lists/" + process.env.LINKED_ID;
   const request = https.request(url, options, (response) => {
-    response.on("data", (data) => {
-      //   console.log(JSON.parse(data));
-      res.send(JSON.parse(data));
-    });
+    if (response.statusCode === 200) {
+      res.sendFile(__dirname + "/success.html");
+    } else {
+      res.sendFile(__dirname + "/failure.html");
+    }
+    
   });
 
   request.write(jsonData);
   request.end();
+});
+
+app.post("/success", (req, res) => {
+  res.redirect("/");
+});
+
+app.post("/failure", (req, res) => {
+  res.redirect("/");
 });
 
 app.listen(3000, () => {
